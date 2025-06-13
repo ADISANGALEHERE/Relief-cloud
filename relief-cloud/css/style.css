@@ -1,0 +1,502 @@
+/* Custom Styles */
+:root {
+    --primary: #0d6efd;
+    --secondary: #6c757d;
+    --success: #198754;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #0dcaf0;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.btn {
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.alert-card {
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary);
+}
+
+.alert-card.critical {
+    border-left-color: var(--danger);
+}
+
+.alert-card.high {
+    border-left-color: var(--warning);
+}
+
+.alert-card.medium {
+    border-left-color: var(--info);
+}
+
+.alert-card.low {
+    border-left-color: var(--success);
+}
+
+#walletInfo {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-group {
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        flex: 1;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0b5ed7;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Custom Classes */
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.3s ease-in-out;
+}
+
+/* Form Styles */
+.form-input {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary;
+}
+
+.form-label {
+    @apply block text-sm font-medium text-gray-700;
+}
+
+.form-button {
+    @apply w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200;
+}
+
+/* Card Styles */
+.card {
+    @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200;
+}
+
+.card-header {
+    @apply flex items-center justify-between mb-4;
+}
+
+.card-title {
+    @apply text-lg font-semibold;
+}
+
+.card-content {
+    @apply text-gray-600;
+}
+
+/* Alert Styles */
+.alert {
+    @apply p-4 rounded-lg mb-4;
+}
+
+.alert-success {
+    @apply bg-success/10 text-success;
+}
+
+.alert-danger {
+    @apply bg-danger/10 text-danger;
+}
+
+.alert-warning {
+    @apply bg-warning/10 text-warning;
+}
+
+.alert-info {
+    @apply bg-info/10 text-info;
+}
+
+/* Button Styles */
+.btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+}
+
+.btn-primary {
+    @apply bg-primary text-white hover:bg-blue-600;
+}
+
+.btn-secondary {
+    @apply bg-secondary text-white hover:bg-gray-600;
+}
+
+.btn-success {
+    @apply bg-success text-white hover:bg-green-600;
+}
+
+.btn-danger {
+    @apply bg-danger text-white hover:bg-red-600;
+}
+
+.btn-warning {
+    @apply bg-warning text-white hover:bg-yellow-600;
+}
+
+.btn-info {
+    @apply bg-info text-white hover:bg-cyan-600;
+}
+
+/* Modal Styles */
+.modal {
+    @apply fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center;
+}
+
+.modal-content {
+    @apply bg-white rounded-lg p-8 max-w-2xl w-full mx-4;
+}
+
+.modal-header {
+    @apply flex justify-between items-center mb-4;
+}
+
+.modal-title {
+    @apply text-xl font-bold;
+}
+
+.modal-body {
+    @apply space-y-4;
+}
+
+.modal-footer {
+    @apply mt-6 flex justify-end space-x-4;
+}
+
+/* Loading Spinner */
+.spinner {
+    @apply animate-spin rounded-full h-12 w-12 border-b-2 border-primary;
+}
+
+/* Navigation */
+.nav-link {
+    @apply text-white hover:text-gray-200 transition-colors duration-200;
+}
+
+.nav-link.active {
+    @apply font-medium;
+}
+
+/* Dashboard Stats */
+.stat-card {
+    @apply bg-white p-4 rounded-lg shadow;
+}
+
+.stat-value {
+    @apply text-2xl font-bold text-primary;
+}
+
+.stat-label {
+    @apply text-sm text-gray-500;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .modal-content {
+        @apply mx-2 p-4;
+    }
+    
+    .card {
+        @apply p-4;
+    }
+    
+    .btn {
+        @apply px-3 py-1.5 text-sm;
+    }
+}
+
+/* Utility Classes */
+.text-truncate {
+    @apply overflow-hidden text-ellipsis whitespace-nowrap;
+}
+
+.flex-center {
+    @apply flex items-center justify-center;
+}
+
+.grid-center {
+    @apply grid place-items-center;
+}
+
+/* Transitions */
+.transition-all {
+    @apply transition-all duration-200 ease-in-out;
+}
+
+/* Shadows */
+.shadow-hover {
+    @apply transition-shadow duration-200 hover:shadow-lg;
+}
+
+/* Gradients */
+.gradient-primary {
+    @apply bg-gradient-to-r from-primary to-blue-600;
+}
+
+.gradient-success {
+    @apply bg-gradient-to-r from-success to-green-600;
+}
+
+.gradient-danger {
+    @apply bg-gradient-to-r from-danger to-red-600;
+}
+
+.gradient-warning {
+    @apply bg-gradient-to-r from-warning to-yellow-600;
+}
+
+.gradient-info {
+    @apply bg-gradient-to-r from-info to-cyan-600;
+}
+
+/* Disaster Information Cards */
+.disaster-card {
+    @apply bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300;
+}
+
+.disaster-card-header {
+    @apply h-48 flex items-center justify-center;
+}
+
+.disaster-card-content {
+    @apply p-6;
+}
+
+.disaster-card-title {
+    @apply text-xl font-bold mb-3;
+}
+
+.disaster-card-list {
+    @apply space-y-2 text-gray-600;
+}
+
+.disaster-card-item {
+    @apply flex items-center;
+}
+
+.disaster-card-icon {
+    @apply text-green-500 mr-2;
+}
+
+/* Emergency Response Guide */
+.response-guide {
+    @apply bg-white rounded-lg shadow-lg p-6;
+}
+
+.response-guide-title {
+    @apply text-xl font-bold mb-4 flex items-center;
+}
+
+.response-guide-list {
+    @apply space-y-3 text-gray-600;
+}
+
+.response-guide-item {
+    @apply flex items-start;
+}
+
+.response-guide-icon {
+    @apply text-green-500 mt-1 mr-2;
+}
+
+/* Footer Styles */
+.footer {
+    @apply mt-16 bg-gray-900 text-white py-8;
+}
+
+.footer-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+}
+
+.footer-section {
+    @apply space-y-4;
+}
+
+.footer-title {
+    @apply text-lg font-semibold mb-4;
+}
+
+.footer-text {
+    @apply text-gray-400;
+}
+
+.footer-link {
+    @apply text-gray-400 hover:text-white transition-colors duration-200;
+}
+
+.footer-divider {
+    @apply mt-8 pt-8 border-t border-gray-800 text-center text-gray-400;
+}
+
+/* Hover Effects */
+.hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+.hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(0,0,0,0.1)];
+}
+
+/* Gradient Backgrounds */
+.gradient-blue {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600;
+}
+
+.gradient-red {
+    @apply bg-gradient-to-r from-red-500 to-red-600;
+}
+
+.gradient-purple {
+    @apply bg-gradient-to-r from-purple-500 to-purple-600;
+}
+
+/* Icon Animations */
+.icon-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .disaster-card-header {
+        @apply h-32;
+    }
+    
+    .response-guide {
+        @apply p-4;
+    }
+    
+    .footer-grid {
+        @apply gap-4;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .disaster-card,
+    .response-guide {
+        @apply shadow-none border border-gray-200;
+    }
+    
+    .footer {
+        @apply bg-white text-gray-900;
+    }
+    
+    .footer-text,
+    .footer-link {
+        @apply text-gray-600;
+    }
+} 

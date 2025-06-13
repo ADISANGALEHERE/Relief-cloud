@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReliefCloud - Decentralized Disaster Relief Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0d6efd',
+                        secondary: '#6c757d',
+                        success: '#198754',
+                        danger: '#dc3545',
+                        warning: '#ffc107',
+                        info: '#0dcaf0'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-primary shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-cloud-sun text-white text-2xl mr-2"></i>
+                        <span class="text-white text-xl font-bold">ReliefCloud</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div id="userInfo" class="text-white">
+                        <span id="userRole" class="font-medium"></span>
+                        <span id="userName" class="ml-2"></span>
+                    </div>
+                    <button id="connectWallet" class="bg-white text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50">
+                        Connect Wallet
+                    </button>
+                    <div id="walletInfo" class="hidden ml-4 bg-white/10 px-4 py-2 rounded-full">
+                        <span id="walletAddress" class="text-white text-sm"></span>
+                    </div>
+                    <button onclick="logout()" class="text-white hover:text-gray-200">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-primary to-blue-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">Decentralized Disaster Relief Platform</h1>
+                <p class="text-xl mb-8">Connecting NGOs, Media, and Volunteers for Efficient Disaster Response</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                    <div class="bg-white/10 p-6 rounded-lg">
+                        <i class="fas fa-hands-helping text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-2">NGOs</h3>
+                        <p class="text-sm">Register and manage relief operations, track donations, and coordinate with volunteers.</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-lg">
+                        <i class="fas fa-bullhorn text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-2">Media</h3>
+                        <p class="text-sm">Create verified disaster alerts and provide real-time updates to the community.</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-lg">
+                        <i class="fas fa-user-friends text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold mb-2">Volunteers</h3>
+                        <p class="text-sm">Join relief efforts, make donations, and help coordinate resources.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Disaster Information Section -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Disaster Management Guide</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Natural Disasters -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-tornado text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Natural Disasters</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Earthquakes: Drop, Cover, and Hold
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Floods: Move to Higher Ground
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Cyclones: Secure Property, Stay Indoors
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Medical Emergencies -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-heartbeat text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Medical Emergencies</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                First Aid Training
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Emergency Contact Numbers
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Medical Supply Management
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Humanitarian Crises -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Humanitarian Crises</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Refugee Assistance
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Food & Water Distribution
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Shelter Management
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Response Guide -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Emergency Response Guide</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Before Disaster -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-shield-alt text-blue-500 mr-2"></i>
+                        Before Disaster
+                    </h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Create an emergency kit with essential supplies</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Develop a family emergency plan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Stay informed about local emergency procedures</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- During Disaster -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                        During Disaster
+                    </h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Follow official instructions and stay calm</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Move to designated safe areas if required</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Keep emergency supplies accessible</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="hidden bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-6">Admin Dashboard</h2>
+            
+            <!-- NGO Approvals Section -->
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-4">Pending NGO Approvals</h3>
+                <div id="ngoApprovalsList" class="space-y-4">
+                    <!-- NGO approval requests will be listed here -->
+                </div>
+            </div>
+
+            <!-- System Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-2">Total Alerts</h4>
+                    <p class="text-2xl font-bold text-primary" id="totalAlerts">0</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-2">Active Alerts</h4>
+                    <p class="text-2xl font-bold text-primary" id="activeAlerts">0</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-2">Total Donations</h4>
+                    <p class="text-2xl font-bold text-primary" id="totalDonations">0</p>
+                </div>
+            </div>
+
+            <!-- User Management -->
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-4">User Management</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Registered NGOs</h4>
+                        <p class="text-2xl font-bold text-primary" id="registeredNGOs">0</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Media Accounts</h4>
+                        <p class="text-2xl font-bold text-primary" id="mediaAccounts">0</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Volunteers</h4>
+                        <p class="text-2xl font-bold text-primary" id="volunteerCount">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Recent Activity</h3>
+                <div id="recentActivity" class="space-y-4">
+                    <!-- Activity items will be listed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- NGO Registration -->
+        <div id="ngoRegistration" class="hidden bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">NGO Registration</h2>
+            <form id="ngoForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Organization Name</label>
+                    <input type="text" id="ngoName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Organization Information</label>
+                    <textarea id="ngoInfo" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    Submit Registration
+                </button>
+            </form>
+        </div>
+
+        <!-- Alert Creation -->
+        <div id="alertCreation" class="hidden bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Create Alert</h2>
+            <form id="alertForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Alert Title</label>
+                        <input type="text" id="alertTitle" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Priority</label>
+                        <select id="priority" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                            <option value="0">Low</option>
+                            <option value="1">Medium</option>
+                            <option value="2">High</option>
+                            <option value="3">Critical</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Alert Message</label>
+                    <textarea id="alertMessage" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"></textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Location</label>
+                        <input type="text" id="alertLocation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Duration (days)</label>
+                        <input type="number" id="duration" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Latitude</label>
+                        <input type="number" id="latitude" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Longitude</label>
+                        <input type="number" id="longitude" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    Create Alert
+                </button>
+            </form>
+        </div>
+
+        <!-- Active Alerts -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Active Alerts</h2>
+            <div id="alertsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- Donation Section -->
+        <div id="donationSection" class="hidden bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Make a Donation</h2>
+            <form id="donationForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Item Name</label>
+                        <input type="text" id="donationItem" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Quantity</label>
+                        <input type="number" id="donationQuantity" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Destination</label>
+                    <input type="text" id="donationDestination" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Proof (IPFS Hash)</label>
+                    <input type="text" id="donationProof" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                </div>
+                <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    Submit Donation
+                </button>
+            </form>
+        </div>
+
+        <!-- Resource Requests -->
+        <div id="resourceRequests" class="hidden bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Request Resources</h2>
+            <form id="resourceRequestForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Resource Name</label>
+                        <input type="text" id="resourceName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Quantity</label>
+                        <input type="number" id="resourceQuantity" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Location</label>
+                    <input type="text" id="resourceLocation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                </div>
+                <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-4">Submit Feedback</h2>
+            <form id="feedbackForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Your Feedback</label>
+                    <textarea id="feedbackText" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    Submit Feedback
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 bg-gray-900 text-white py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">About ReliefCloud</h4>
+                        <p class="text-gray-400">
+                            A decentralized platform for efficient disaster response and relief operations.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white">Emergency Contacts</a></li>
+                            <li><a href="#" class="hover:text-white">Safety Guidelines</a></li>
+                            <li><a href="#" class="hover:text-white">Volunteer Registration</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><i class="fas fa-envelope mr-2"></i>support@reliefcloud.org</li>
+                            <li><i class="fas fa-phone mr-2"></i>Emergency: 911</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                    <p>Created by Aditya Sangale</p>
+                    <p class="mt-2">ADCET Ashta Minor Project</p>
+                    <p class="mt-2">© 2024 ReliefCloud. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-sm w-full mx-4">
+            <div class="flex items-center justify-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+            <p id="loadingMessage" class="mt-4 text-center text-gray-700">Processing transaction...</p>
+        </div>
+    </div>
+
+    <!-- Alert Details Modal -->
+    <div id="alertDetailsModal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-2xl w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Alert Details</h3>
+                <button onclick="closeModal('alertDetailsModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="alertDetailsContent" class="space-y-4">
+                <!-- Content will be dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
